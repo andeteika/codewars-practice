@@ -1,13 +1,26 @@
+// Kata Link: https://www.codewars.com/kata/52423db9add6f6fc39000354/train/java
+
 public class ConwayLife {
 
   public static int[][] getGeneration(int[][] cells, int generations) {
     
     
     for(int i=0; i<generations; i++) {
+      ConwayLife.expandGrid(cells);
       cells = ConwayLife.evolveGeneration(cells);
     }
     return cells;
     
+  }
+
+  public static int[][] expandGrid(int[][] cells) {
+    int[][] expandedGrid = new int[cells.length + 2][cells[0].length + 2];
+
+    for(int i=0; i<cells.length; i++) {
+      for(int j=0; j<cells[i]; j++) {
+        expandedGrid[i+1][j+1] = cells[i][j];
+      }
+    }
   }
   
   public static int[][] evolveGeneration(int[][] cells) {
